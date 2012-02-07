@@ -5,11 +5,15 @@ var page_view = require('./page_view.js');
 
 var MIME_TYPES =
 {
-  '.css': 'text/css',
-  '.html': 'text/html',
-  '.js': 'text/javascript',
-  '.png': 'image/png',
-  '.jpg': 'image/jpg',
+  '.css':   'text/css',
+  '.js':    'text/javascript',
+  '.png':   'image/png',
+  '.jpg':   'image/jpg',
+  '.woff':  'application/font-woff',
+  '.ttf':   'application/octet-stream',
+  '.otf':   'application/octet-stream',
+  '.eot':   'application/vnd.ms-fontobject',
+  '.svg':   'image/svg+xml',
   default: 'text/plain',
 };
 
@@ -49,7 +53,7 @@ exports.onRequest = function(request, response)
   else
   {
     // check that file exists
-    var file_path = '.' + request.url;
+    var file_path = 'static/' + request.url;
     path.exists(file_path, function(exists)
     {
       if (exists && request.url != '/') // serve normally
