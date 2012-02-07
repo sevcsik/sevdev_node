@@ -26,7 +26,7 @@ function renderPage(page_name, template, response)
       }
       else
       {
-        console.log('page cached: ' + page_name);
+        if (!no_cache) console.log('page cached: ' + page_name);
         var output = template.replace('{{ARTICLE}}', data);
         response.write(output);
         response.end();
@@ -47,7 +47,7 @@ exports.renderTemplate = function(request, response)
   // load template
   if (!template)
   {
-    fs.readFile('template.html', 'utf-8', function(err, data)
+    fs.readFile('static/template.html', 'utf-8', function(err, data)
     {
       if (err)
       {
@@ -56,7 +56,7 @@ exports.renderTemplate = function(request, response)
       }
       else
       {
-        console.log('template cached');
+        if (!no_cache) console.log('template cached');
         template = data;
         renderPage(page_name, template, response);
       }

@@ -53,7 +53,7 @@ exports.onRequest = function(request, response)
   else
   {
     // check that file exists
-    var file_path = 'static/' + request.url;
+    var file_path = 'static' + request.url;
     path.exists(file_path, function(exists)
     {
       if (exists && request.url != '/') // serve normally
