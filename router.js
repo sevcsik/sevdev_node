@@ -20,13 +20,12 @@ var no_cache = false;
 if (process.argv.indexOf('--no-cache') != -1)
 {
   no_cache = true;
+  process.no_cache = no_cache;
   console.log('cache disabled.');
 }
 
 exports.onRequest = function(request, response)
 {
-  var request_uri = url.parse(request.url);
-
   // check that file exists in cache
   if (!no_cache && request.url in static_cache)
   {
@@ -103,7 +102,7 @@ exports.onRequest = function(request, response)
               response.writeHead(501);
               break;
             default:
-              page_view.handle(request, response);
+              page_view.renderPage(request, response);
           }
         }
         //response.end(); // do we need this here?
