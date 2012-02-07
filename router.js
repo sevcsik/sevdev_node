@@ -91,7 +91,8 @@ exports.onRequest = function(request, response)
       else // treat as a dynamic url
       {
         response.writeHead(200, { 'Content-Type': 'text/html' });
-        if (request.url == '/') page_view.handle(request, response);
+        if (request.url == '/')
+          page_view.renderTemplate(request, response);
         else
         {
           var url_components = request.url.split('/');
@@ -102,10 +103,9 @@ exports.onRequest = function(request, response)
               response.writeHead(501);
               break;
             default:
-              page_view.renderPage(request, response);
+              page_view.renderTemplate(request, response);
           }
         }
-        //response.end(); // do we need this here?
       }
     });
   }
