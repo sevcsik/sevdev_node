@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>sevdev website development</title>
+  <title>sevdev: {{the_title}}</title>
   <script src="js/jquery-1.7.min.js"></script>
   <script src="js/jquery.hashchange-1.0.0.js"></script>
   <script src="js/jquery.scrollTo-min.js"></script>
@@ -19,13 +19,14 @@
     <header id="header">
     </header>
     <nav id="menu">
-      <a href="#about">about</a>
-      <a href="#contact">contact</a>
-      <a href="#references">references</a>
+      <a href="/about">about</a>
+      <a href="/contact">contact</a>
+      <a href="/">home</a>
+      <a href="/references">references</a>
       <div id="#menu_selector"></div>
     </nav>
     <div id="content">
-      <img src="img/loading.gif" style="margin-top: 40px">
+{{the_content}}
     </div>
   </div>
 </body>

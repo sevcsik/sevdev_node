@@ -24,7 +24,6 @@ var no_cache = false;
 if (process.argv.indexOf('--no-cache') != -1)
 {
   no_cache = true;
-  process.no_cache = no_cache;
   console.log('cache disabled.');
 }
 
@@ -103,8 +102,10 @@ exports.onRequest = function(request, response)
           switch (url_components[1])
           {
             case 'post':
-            case 'ajax':
               response.writeHead(501);
+              break;
+            case 'ajax/pages/':
+              page_view.respondAjax(request, response);
               break;
             default:
               page_view.renderTemplate(request, response);
