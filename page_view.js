@@ -40,6 +40,7 @@ function renderPage(page_name, template, response)
           var page_xml = libxml.parseHtmlString(data);
           page.title = page_xml.get('//sd-title').text();
           page.menutitle = page_xml.get('//sd-menutitle').text();
+          page.name = page_name;
         }
         catch (err)
         {
@@ -54,9 +55,9 @@ function renderPage(page_name, template, response)
         // put in cache
         if (!no_cache) page_cache[page_name] = page;
 
-        var output = template.replace('{{the_content}}', page.content)
-                             .replace('{{the_title}}', page.title)
-                             .replace('{{the_menutitle}}', page.menutitle);
+        var output = template.replace(/{{the_content}}/g, page.content)
+                             .replace(/{{the_title}}/g, page.title)
+                             .replace(/{{the_pagename}}/g, page.name);
         response.write(output);
         response.end();
 

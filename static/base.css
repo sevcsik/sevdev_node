@@ -43,13 +43,13 @@ body
   box-shadow: 0px 0px 20px black;
 
   background-image: #3b3b3b;
-background-image: -moz-linear-gradient(top, #3b3b3b 0%, #797979 100%);
-background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3b3b3b), color-stop(100%,#797979));
-background-image: -webkit-linear-gradient(top, #3b3b3b 0%,#797979 100%);
-background-image: -o-linear-gradient(top, #3b3b3b 0%,#797979 100%);
-background-image: -ms-linear-gradient(top, #3b3b3b 0%,#797979 100%);
-background-image: linear-gradient(top, #3b3b3b 0%,#797979 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b3b3b', endColorstr='#797979',GradientType=0 );>
+  background-image: -moz-linear-gradient(top, #3b3b3b 0%, #797979 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3b3b3b), color-stop(100%,#797979));
+  background-image: -webkit-linear-gradient(top, #3b3b3b 0%,#797979 100%);
+  background-image: -o-linear-gradient(top, #3b3b3b 0%,#797979 100%);
+  background-image: -ms-linear-gradient(top, #3b3b3b 0%,#797979 100%);
+  background-image: linear-gradient(top, #3b3b3b 0%,#797979 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b3b3b', endColorstr='#797979',GradientType=0 );>
 
 }
 
@@ -63,13 +63,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b3b3b', end
   z-index: -2;
 
   background-image: #3a3a3a;
-background-image: -moz-linear-gradient(top, #3a3a3a 0%, #7b7b7b 100%);
-background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3a3a3a), color-stop(100%,#7b7b7b));
-background-image: -webkit-linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
-background-image: -o-linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
-background-image: -ms-linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
-background-image: linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a3a3a', endColorstr='#7b7b7b',GradientType=0 );>
+  background-image: -moz-linear-gradient(top, #3a3a3a 0%, #7b7b7b 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3a3a3a), color-stop(100%,#7b7b7b));
+  background-image: -webkit-linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
+  background-image: -o-linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
+  background-image: -ms-linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
+  background-image: linear-gradient(top, #3a3a3a 0%,#7b7b7b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a3a3a', endColorstr='#7b7b7b',GradientType=0 );>
 
 }
 
@@ -86,7 +86,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a3a3a', end
 #menu
 {
   position: absolute;
-  left: 0px;
+  left: 0px; /* js manipulated */
   top: 351px;
   height: 50px;
   background: bottom repeat-x;
@@ -96,41 +96,62 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a3a3a', end
 
 #menu a
 {
+  display: inline-block;
   line-height: 50px;
   height: 50px;
+  width: 140px;
   color: #ffffff;
   font-family: 'TelegramaRender', Arial;
   font-size: 18px;
   padding: 0px 20px;
+  margin: 0;
   text-shadow: 0px -1px 1px black;
+  z-index: 1;
+  position: relative;
+  text-align: center;
 
   -webkit-transition: color 0.5s linear;
--moz-transition: color 0.5s linear;
--ms-transition: color 0.5s linear;
--o-transition: color 0.5s linear;
-transition: color 0.5s linear;;
+  -moz-transition: color 0.5s linear;
+  -ms-transition: color 0.5s linear;
+  -o-transition: color 0.5s linear;
+  transition: color 0.5s linear;
 }
 
-#menu a:hover
+#menu_slider
+{
+  position: relative;
+  font-size: 0;
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+  -ms-transition: left 0.5s;
+  -o-transition: left 0.5s;
+  transition: left 0.5s;
+}
+
+#menu.about > #menu_slider { left: 390px }
+#menu.contact > #menu_slider { left: 210px }
+#menu.home > #menu_slider, #menu.root > #menu_slider { left: 30px }
+#menu.references > #menu_slider { left: -150px }
+
+#menu a:hover,
+#menu a.active
 {
   color: #95cfe6;
 
-  -webkit-transition: color 0.5s linear;
--moz-transition: color 0.5s linear;
--ms-transition: color 0.5s linear;
--o-transition: color 0.5s linear;
-transition: color 0.5s linear;;
 }
 
 #menu_selector
 {
   position: absolute;
   bottom: 0px;
-  left: 0px;
-  height: 5px;
-  width: 50px;
-  background: bottom repeat-x;
+  left: 390px;
+  right: 390px;
+  top: -1px;
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-color: rgba(255, 255, 255, 0.1);
   background-image: url(img/menu_selector_fg.png);
+  z-index: 0;
 }
 
 #content
@@ -153,20 +174,20 @@ transition: color 0.5s linear;;
   left: 0px;
   opacity: 1;
   -webkit-transition-property: opacity, left;
--webkit-transition-duration: 0.5s;
--webkit-transition-timing-function: ease-in;
--moz-transition-property: opacity, left;
--moz-transition-duration: 0.5s;
--moz-transition-timing-function: ease-in;
--ms-transition-property: opacity, left;
--ms-transition-duration: 0.5s;
--ms-transition-timing-function: ease-in;
--o-transition-property: opacity, left;
--o-transition-duration: 0.5s;
--o-transition-timing-function: ease-in;
-transition-property: opacity, left;
-transition-duration: 0.5s;
-transition-timing-function: ease-in;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-property: opacity, left;
+  -moz-transition-duration: 0.5s;
+  -moz-transition-timing-function: ease-in;
+  -ms-transition-property: opacity, left;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-timing-function: ease-in;
+  -o-transition-property: opacity, left;
+  -o-transition-duration: 0.5s;
+  -o-transition-timing-function: ease-in;
+  transition-property: opacity, left;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
 }
 
 #content .hidden_left
@@ -174,19 +195,19 @@ transition-timing-function: ease-in;
   left: -150px;
   opacity: 0;
   -webkit-transition-property: opacity, left;
--webkit-transition-duration: 0.5s;
--webkit-transition-timing-function: ease-in;
--moz-transition-property: opacity, left;
--moz-transition-duration: 0.5s;
--moz-transition-timing-function: ease-in;
--ms-transition-property: opacity, left;
--ms-transition-duration: 0.5s;
--ms-transition-timing-function: ease-in;
--o-transition-property: opacity, left;
--o-transition-duration: 0.5s;
--o-transition-timing-function: ease-in;
-transition-property: opacity, left;
-transition-duration: 0.5s;
-transition-timing-function: ease-in;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-property: opacity, left;
+  -moz-transition-duration: 0.5s;
+  -moz-transition-timing-function: ease-in;
+  -ms-transition-property: opacity, left;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-timing-function: ease-in;
+  -o-transition-property: opacity, left;
+  -o-transition-duration: 0.5s;
+  -o-transition-timing-function: ease-in;
+  transition-property: opacity, left;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
 }
 

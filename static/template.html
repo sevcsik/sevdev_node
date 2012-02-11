@@ -2,14 +2,15 @@
 <html>
 <head>
   <title>sevdev: {{the_title}}</title>
+  <meta charset="utf-8">
   <script src="js/jquery-1.7.min.js"></script>
   <script src="js/jquery.hashchange-1.0.0.js"></script>
   <script src="js/jquery.scrollTo-min.js"></script>
   <script src="js/jquery.transition.min.js"></script>
   <script src="js/html5.js"></script>
-  <script src="js/common.js"></script>
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="telegrama/stylesheet.css">
+  <script>var page_name = '{{the_pagename}}'</script>
 </head>
 <body>
   <div id="background_header"></div>
@@ -18,12 +19,14 @@
   <div id="align">
     <header id="header">
     </header>
-    <nav id="menu">
-      <a href="/about">about</a>
-      <a href="/contact">contact</a>
-      <a href="/">home</a>
-      <a href="/references">references</a>
-      <div id="#menu_selector"></div>
+    <nav id="menu" class="{{the_pagename}}">
+      <div id="menu_slider">
+        <a href="/about" data-page="about">about</a>
+        <a href="/contact" data-page="contact">contact</a>
+        <a href="/" data-page="home">home</a>
+        <a href="/references" data-references="references">references</a>
+      </div>
+      <div id="menu_selector"></div>
     </nav>
     <div id="content">
 {{the_content}}
