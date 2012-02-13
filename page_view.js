@@ -17,6 +17,12 @@ function renderPage(template, page)
 
 }
 
+function parsePageXML(content, page)
+{
+  var page_xml = libxml.parseHtmlString(data);
+  page.title = page_xml.get('//sd-title').text();
+}
+
 function loadPage(page_name, template, response)
 {
   // load page
@@ -45,18 +51,16 @@ function loadPage(page_name, template, response)
 
         // read page info from xml
         var page = {};
+        page.name = page_name;
+
         try
         {
-          var page_xml = libxml.parseHtmlString(data);
-          page.title = page_xml.get('//sd-title').text();
-          page.menutitle = page_xml.get('//sd-menutitle').text();
-          page.name = page_name;
+          parsePageXML(data, page);
         }
         catch (err)
         {
           console.log('xml error: ' + err.toString());
           page.content = page.title = 'XML ERROR';
-          page.menutitle = page_name;
         }
 
         // delete sd-pageinfo before outputting it
