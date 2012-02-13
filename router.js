@@ -116,3 +116,9 @@ exports.onRequest = function(request, response)
   }
 };
 
+// bind cache clear to SIGHUP
+process.on('SIGHUP', function()
+{
+  static_cache =  {};
+  console.log('static cache cleared.');
+});

@@ -9,6 +9,7 @@ var no_cache = false;
 // is cache disabled?
 if (process.argv.indexOf('--no-cache') != -1) no_cache = true;
 
+
 function renderPage(page_name, template, response)
 {
   // load page
@@ -103,8 +104,10 @@ exports.respondAjax = function(request, response)
 
 }
 
-exports.clearCache = function()
+// bind cache clear to SIGHUP
+process.on('SIGHUP', function()
 {
-  page_cache = template = null;
+  template = null;
+  static_cache = {};
   console.log('page cache cleared.');
-}
+});
