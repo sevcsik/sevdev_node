@@ -9,19 +9,28 @@ var no_cache = false;
 // is cache disabled?
 if (process.argv.indexOf('--no-cache') != -1) no_cache = true;
 
+function renderPage(template, page)
+{
+  return template.replace(/{{the_content}}/g, page.content)
+                 .replace(/{{the_title}}/g, page.title)
+                 .replace(/{{the_pagename}}/g, page.name);
 
-function renderPage(page_name, template, response)
+}
+
+function loadPage(page_name, template, response)
 {
   // load page
-  var output;
   if (!no_cache && page_name in page_cache)
   {
-    output = template.replace('{{ARTICLE}}', page_cache[page_name]);
-    response.write(output);
+    // render from cache
+    console.log(JSON.stringify(page_cache));
+    console.log(page_name);
+    response.write(renderPage(template, page_cache[page_name]));
     response.end();
   }
   else
   {
+    // load page from file
     fs.readFile('pages' + '/' + page_name + '.html', 'utf-8',
                 function(err, data)
     {
@@ -56,14 +65,11 @@ function renderPage(page_name, template, response)
         // put in cache
         if (!no_cache) page_cache[page_name] = page;
 
-        var output = template.replace(/{{the_content}}/g, page.content)
-                             .replace(/{{the_title}}/g, page.title)
-                             .replace(/{{the_pagename}}/g, page.name);
-        response.write(output);
-        response.end();
+        // set cache-control
+        if (no_cache) response.writeHead(200, {'Cache-Control': 'no-cache'});
 
-        // put in page_cache
-        if (!no_cache) page_cache[page_name] = data;
+        response.write(renderPage(template, page));
+        response.end();
       }
     });
   }
@@ -89,11 +95,11 @@ exports.renderTemplate = function(request, response)
       {
         if (!no_cache) console.log('template cached');
         template = data;
-        renderPage(page_name, template, response);
+        loadPage(page_name, template, response);
       }
     });
   }
-  else renderPage(page_name, template, response);
+  else loadPage(page_name, template, response);
 
   // only keep template in memory, if cache is enabled
   if (no_cache) template = null;

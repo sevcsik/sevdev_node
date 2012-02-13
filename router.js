@@ -41,11 +41,19 @@ exports.onRequest = function(request, response)
     }
     else // respond with cached content
     {
-      response.writeHead(200,
-      {
-        'Content-Type': static_cache[request.url].type,
-        'ETag': static_cache[request.url].etag
-      });
+      if (!no_cache)
+        response.writeHead(200,
+        {
+          'Content-Type': static_cache[request.url].type,
+          'ETag': static_cache[request.url].etag
+        });
+      else
+        response.writeHead(200,
+        {
+          'Content-Type': static_cache[request.url].type,
+          'Cache-Control': 'no-cache'
+        });
+
       response.end(static_cache[request.url].content, 'utf-8');
     }
   }
