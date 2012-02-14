@@ -19,7 +19,7 @@ function renderPage(template, page)
 
 function parsePageXML(content, page)
 {
-  var page_xml = libxml.parseHtmlString(data);
+  var page_xml = libxml.parseHtmlString(content);
   page.title = page_xml.get('//sd-title').text();
 }
 
@@ -29,7 +29,6 @@ function loadPage(page_name, template, response)
   if (!no_cache && page_name in page_cache)
   {
     // render from cache
-    console.log(JSON.stringify(page_cache));
     console.log(page_name);
     response.write(renderPage(template, page_cache[page_name]));
     response.end();
@@ -109,6 +108,7 @@ exports.renderTemplate = function(request, response)
   if (no_cache) template = null;
 };
 
+// page ajax call: host/ajax/page/<page_name>
 exports.respondAjax = function(request, response)
 {
 
