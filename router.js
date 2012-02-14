@@ -106,18 +106,10 @@ exports.onRequest = function(request, response)
           page_view.renderTemplate(request, response);
         else
         {
-          var url_components = request.url.split('/');
-          switch (url_components[1])
-          {
-            case 'post':
-              response.writeHead(501);
-              break;
-            case 'ajax/pages/':
-              page_view.respondAjax(request, response);
-              break;
-            default:
-              page_view.renderTemplate(request, response);
-          }
+          if (request.url.match(/^\/ajax\/pages/))
+            page_view.respondAjax(request, response);
+          else
+            page_view.renderTemplate(request, response);
         }
       }
     });

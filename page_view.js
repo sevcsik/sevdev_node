@@ -29,7 +29,6 @@ function loadPage(page_name, template, response)
   if (!no_cache && page_name in page_cache)
   {
     // render from cache
-    console.log(page_name);
     response.write(renderPage(template, page_cache[page_name]));
     response.end();
   }
@@ -108,10 +107,57 @@ exports.renderTemplate = function(request, response)
   if (no_cache) template = null;
 };
 
-// page ajax call: host/ajax/page/<page_name>
+// page ajax call: /ajax/pages/<page_name>
 exports.respondAjax = function(request, response)
 {
+  // get page name from url
+  var page_name = request.url.replace('/ajax/pages/', '');
 
+  if (!no_cache && page_name in page_cache)
+  {
+    response.writeHead(200, {'Content-type:': 'application/json'});
+    response.end(JSON.stringify(page_cache[page_name]));
+  }
+  else
+  // load page from file
+  fs.readFile('pages' + '/' + page_name + '.html', 'utf-8',
+              function(err, data)
+  {
+    if (err)
+    {
+      response.writeHead(404, 'Page Missing');
+      response.end();
+    }
+    else
+    {
+      if (!no_cache) console.log('page cached: ' + page_name);
+
+      // read page info from xml
+      var page = {};
+      page.name = page_name;
+
+      try
+      {
+        parsePageXML(data, page);
+      }
+      catch (err)
+      {
+        console.log('xml error: ' + err.toString());
+        page.content = page.title = 'XML ERROR';
+      }
+      // delete sd-pageinfo before outputting it
+      page.content = data.replace(/<sd-pageinfo>[^]+<\/sd-pageinfo>/, '');
+
+      // put in cache
+      if (!no_cache) page_cache[page_name] = page;
+
+      // set cache-control
+      if (no_cache) response.writeHead(200, {'Cache-Control': 'no-cache'});
+
+      response.writeHead(200, {'Content-type:': 'application/json'});
+      response.end(JSON.stringify(page));
+    }
+  });
 }
 
 // bind cache clear to SIGHUP
