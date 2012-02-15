@@ -128,10 +128,11 @@ body
   transition: left 0.5s;
 }
 
-#menu.about > #menu_slider { left: 390px }
-#menu.contact > #menu_slider { left: 210px }
-#menu.home > #menu_slider, #menu.root > #menu_slider { left: 30px }
-#menu.references > #menu_slider { left: -150px }
+#menu.focus-about > #menu_slider { left: 390px }
+#menu.focus-contact > #menu_slider { left: 210px }
+#menu.focus-root > #menu_slider { left: 30px }
+#menu.focus-projects > #menu_slider { left: -150px }
+#menu.focus-links > #menu_slider { left: -330px }
 
 #menu a:hover,
 #menu a.active
