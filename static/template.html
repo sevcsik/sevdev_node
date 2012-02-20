@@ -10,7 +10,10 @@
   <script src="js/template.js"></script>
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="telegrama/stylesheet.css">
-  <script>var page_name = '{{the_pagename}}'</script>
+  <script>
+    var page_name = '{{the_pagename}}';
+    var initial_page = {{pageinfo_json}};
+  </script>
 </head>
 <body>
   <div id="background_header"></div>

@@ -11,10 +11,20 @@ if (process.argv.indexOf('--no-cache') != -1) no_cache = true;
 
 function renderPage(template, page)
 {
-  return template.replace(/{{the_content}}/g, page.content)
+  var output = template
+                 .replace(/{{the_content}}/g, page.content)
                  .replace(/{{the_title}}/g, page.title)
                  .replace(/{{the_pagename}}/g, page.name);
 
+  // don't include content in pageinfo_json again
+  var content = page.content;
+  page.content = null;
+  output = output.replace(/{{pageinfo_json}}/g, JSON.stringify(page));
+
+  // restore page object
+  page.content = content;
+
+  return output;
 }
 
 function parsePageXML(content, page)

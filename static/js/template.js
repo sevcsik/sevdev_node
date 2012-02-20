@@ -4,18 +4,26 @@
  */
 
 /**
+ * This contains the cached pages
+ */
+var page_cache = {};
+
+/**
  * Set up UI event handlers, and load pages when DOM is ready
  */
 function onReady()
 {
-  // add onclick to each menu item
   $('#menu_slider > a').each(function(i, e)
   {
+    // add onclick to each menu item
     $(e).click(changePage);
     var page = $(e).attr('data-page');
 
     if (page != page_name) // don't load active page again
       $.ajax('ajax/pages/' + page, { success: onPageLoad });
+
+    // add entries in page_cache
+    page_cache[page] = null;
   });
 
   // bind browser navigation buttons to changePage
@@ -24,6 +32,12 @@ function onReady()
   // set initial history state object
   history.replaceState({ page: page_name }, page_name,
       page_name == 'root' ? '/' : page_name);
+
+  // load initial page to cache (object comes from server)
+  page_cache[page_name] = initial_page;
+
+  // get initial_page.content from content element
+  initial_page.content = $('#content').html();
 }
 
 /**
@@ -62,7 +76,7 @@ function changePage(event)
  */
 function onPageLoad(data)
 {
-  console.log(data);
+  page_cache[data.name] = data;
 }
 
 $(document).ready(onReady);
