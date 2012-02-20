@@ -177,6 +177,14 @@ body
 
   -webkit-transition-property: margin-left, opacity;
   -webkit-transition-duration: 0.5s;
+  -moz-transition-property: margin-left, opacity;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-property: margin-left, opacity;
+  -ms-transition-duration: 0.5s;
+  -o-transition-property: margin-left, opacity;
+  -ot-transition-duration: 0.5s;
+  transition-property: margin-left, opacity;
+  transition-duration: 0.5s;
 }
 
 #content > .page.inactive
