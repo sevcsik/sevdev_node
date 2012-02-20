@@ -9,10 +9,13 @@
 var page_cache = {};
 
 /**
- * Set up UI event handlers, and load pages when DOM is ready
+ * Set up UI event handlers, load pages when DOM is ready,
+ * and add additional elements
  */
 function onReady()
 {
+  $(window).resize(resizeContentDiv);
+
   // bind browser navigation buttons to changePage
   window.onpopstate = changePage;
 
@@ -104,6 +107,8 @@ function changePage(event)
   if (page_cache[page])
     $('title').html('sevdev: ' + page_cache[page].title);
 
+  resizeContentDiv();
+
   return false;
 }
 
@@ -118,4 +123,24 @@ function onPageLoad(data)
     .html(data.content);
 }
 
+var count = 0;
+
+/**
+ * Set #content height to the current article's height
+ * but fill the window
+ */
+function resizeContentDiv()
+{
+  // distance between #content's top and window's bottom
+  var min_size = window.innerHeight - $('#content')[0].offsetTop;
+
+  // current .page's height
+  var content_size =
+    $('#content > [data-page="' + page_name + '"]')[0].offsetHeight;
+
+  $('#content')[0].style.height =
+    (min_size > content_size ? min_size : content_size) + 'px';
+}
+
 $(document).ready(onReady);
+$(document).ready(resizeContentDiv);
