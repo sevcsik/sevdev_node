@@ -19,6 +19,8 @@ nav, article, header
 body
 {
   background: #7b7b7b;
+  min-width: 960px;
+  overflow-x: hidden;
 }
 
 #background_header
@@ -77,7 +79,6 @@ body
 {
   width: 960px;
   margin: auto;
-  min-height: 1600px;
   position: relative;
   background: url(img/header_bg.png) center top no-repeat;;
   padding-top: 400px;
@@ -92,6 +93,7 @@ body
   background: bottom repeat-x;
   background-image: url(img/menu_selector_bg.png);
   width: 100%;
+  z-index: 2;
 }
 
 #menu a
@@ -162,17 +164,41 @@ body
   white-space: nowrap;
 }
 
-#content.focus-about .page:first-child    { margin-left: 0% }
-#content.focus-contact .page:first-child  { margin-left: -100% }
-#content.focus-root .page:first-child     { margin-left: -200% }
-#content.focus-projects .page:first-child { margin-left: -300% }
-#content.focus-links .page:first-child    { margin-left: -400% }
+#overlay_left,
+#overlay_right
+{
+  position: absolute;
+  z-index: 1;
+  background-color: black;
+  opacity: 0.5;
+  width: 10000px;
+  height: 100%;
+  box-shadow: 0px 0px 20px black;
+  top: 0px;
+}
+
+#overlay_left
+{
+  right: 100%;
+}
+
+#overlay_right
+{
+  left: 100%;
+}
+
+
+#content.focus-about .dummy    { margin-left: 0% }
+#content.focus-contact .dummy  { margin-left: -100% }
+#content.focus-root .dummy     { margin-left: -200% }
+#content.focus-projects .dummy { margin-left: -300% }
+#content.focus-links .dummy    { margin-left: -400% }
 
 #content > .page
 {
   display: inline-block;
   width: 100%;
-  min-height: 300px;
+  min-height: 400px;
   vertical-align: top;
 
   -webkit-transition-property: margin-left, opacity;
@@ -185,6 +211,11 @@ body
   -ot-transition-duration: 0.5s;
   transition-property: margin-left, opacity;
   transition-duration: 0.5s;
+}
+
+#content > .dummy
+{
+  width: 0;
 }
 
 #content > .page.inactive

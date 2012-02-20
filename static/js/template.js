@@ -26,7 +26,13 @@ function onReady()
   // get initial_page.content from content element
   initial_page.content = $('#content > .page').html();
 
-  $('#content').html('');
+  // remove initial page and add dummy div for positioning
+  $('#content .page').remove();
+  $('#content').append($('<div class="page dummy"></div>'));
+
+  // add side overlays
+  $('#content').append('<div id="overlay_left"></div>');
+  $('#content').append('<div id="overlay_right"></div>');
 
   $('#menu_slider > a').each(function(i, e)
   {
