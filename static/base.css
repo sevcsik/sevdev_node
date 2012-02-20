@@ -174,8 +174,21 @@ body
   width: 100%;
   min-height: 300px;
   vertical-align: top;
-  box-shadow: 0px 0px 1px white;
 
-  -webkit-transition: margin-left 0.5s;
+  -webkit-transition-property: margin-left, opacity;
+  -webkit-transition-duration: 0.5s;
 }
 
+#content > .page.inactive
+{
+  opacity: 0.2;
+}
+
+#content > .page >  article
+{
+  padding: 10px 20px;
+  text-align: left;
+  font-family: sans-serif;
+  color: #ccc;
+  font-size: 14px;
+}

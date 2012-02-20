@@ -49,6 +49,9 @@ function onReady()
     if (page_cache[page]) page_div.html(page_cache[page].content)
     else page_div.addClass('loading');
 
+    // set inactive
+    if (page != page_name) page_div.addClass('inactive');
+
     $('#content').append(page_div);
   });
 
@@ -78,12 +81,18 @@ function changePage(event)
     history.pushState({ 'page': page }, page, page == 'root' ? '/' : page);
   }
 
+  // set current page inactive
+  $('#content [data-page="' + page_name + '"]').addClass('inactive');
+
   // slide menu and content
   $('#menu').attr('class', 'focus-' + page);
   $('#content').attr('class', 'focus-' + page);
 
   // set page_name global
   page_name = page;
+
+  // set new page active
+  $('#content [data-page="' + page_name + '"]').removeClass('inactive');
 
   // set page title
   if (page_cache[page])
