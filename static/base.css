@@ -40,7 +40,7 @@ body
   top: 350px;
   left: 0px;
   width: 100%;
-  height: 50px;
+  height: 35px;
   z-index: -1;
   box-shadow: 0px 0px 20px black;
 
@@ -55,10 +55,26 @@ body
 
 }
 
+#background_menu_line
+{
+  position: absolute;
+  top: 381px;
+  width: 100%;
+  height: 5px;
+  background: #000000;
+  background: -moz-linear-gradient(top, #000000 0%, #3a3a3a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#3a3a3a));
+  background: -webkit-linear-gradient(top, #000000 0%,#3a3a3a 100%);
+  background: -o-linear-gradient(top, #000000 0%,#3a3a3a 100%);
+  background: -ms-linear-gradient(top, #000000 0%,#3a3a3a 100%);
+  background: linear-gradient(top, #000000 0%,#3a3a3a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#3a3a3a',GradientType=0 );
+}
+
 #background_content
 {
   position: absolute;
-  top: 401px;
+  top: 381px;
   height: 400px;
   left: 0px;
   width: 100%;
@@ -81,7 +97,7 @@ body
   margin: auto;
   position: relative;
   background: url(img/header_bg.png) center top no-repeat;;
-  padding-top: 400px;
+  padding-top: 380px;
 }
 
 #menu
@@ -89,9 +105,7 @@ body
   position: absolute;
   left: 0px; /* js manipulated */
   top: 351px;
-  height: 50px;
-  background: bottom repeat-x;
-  background-image: url(img/menu_selector_bg.png);
+  height: 35px;
   width: 100%;
   z-index: 2;
 }
@@ -99,12 +113,12 @@ body
 #menu a
 {
   display: inline-block;
-  line-height: 50px;
-  height: 50px;
+  line-height: 30px;
+  height: 30px;
   width: 140px;
   color: #ffffff;
   font-family: 'TelegramaRender', Arial;
-  font-size: 18px;
+  font-size: 15px;
   padding: 0px 20px;
   margin: 0;
   text-shadow: 0px -1px 1px black;
@@ -173,8 +187,8 @@ body
   opacity: 0.5;
   width: 10000px;
   height: 100%;
-  box-shadow: 0px 0px 20px black;
-  top: 0px;
+  box-shadow: 0px 5px 20px black;
+  top: 2px;
 }
 
 #overlay_left
