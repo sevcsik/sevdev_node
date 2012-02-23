@@ -20,8 +20,9 @@ function onReady()
   window.onpopstate = changePage;
 
   // set initial history state object
-  history.replaceState({ page: page_name }, page_name,
-      page_name == 'root' ? '/' : page_name);
+  if (Modernizr.history)
+    history.replaceState({ page: page_name }, page_name,
+        page_name == 'root' ? '/' : page_name);
 
   // load initial page to cache (object comes from server)
   page_cache[page_name] = initial_page;
@@ -76,7 +77,7 @@ function changePage(event)
   var page;
 
   // is it coming from onpopstate
-  if (event instanceof PopStateEvent)
+  if (event.type == 'popstate')
   {
     // if it's fired 'cause page load, ignore
     if (!event.state) return;
@@ -87,7 +88,8 @@ function changePage(event)
   {
     page = $(event.target).attr('data-page');
     // push url into history
-    history.pushState({ 'page': page }, page, page == 'root' ? '/' : page);
+    if (Modernizr.history)
+      history.pushState({ 'page': page }, page, page == 'root' ? '/' : page);
   }
 
   // set current page inactive
