@@ -7,6 +7,7 @@
  * Global to store a reference to header SVGDocument
  */
 var header_svg = null;
+var $header_svg = null;
 
 
 /**
@@ -16,6 +17,7 @@ var header_svg = null;
 function initHeader(svg)
 {
   header_svg = svg;
+  $header_svg = $(svg);
 
   // hide hover backgrounds
   $(header_svg).find('[id$="activebg"]').hide();
