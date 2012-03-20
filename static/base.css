@@ -266,9 +266,10 @@ article > h1
   font-size: 72px;
   top: -104px;
   font-weight: normal;
-  font-family: Arial;
+  font-family: Ubuntu, Verdana, sans-serif;
   opacity: 0.5;
   text-shadow: 0px 0px 5px black;
+  color: white;
 
   -webkit-transition: opacity 0.5s;
 }
