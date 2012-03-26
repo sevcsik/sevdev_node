@@ -602,7 +602,8 @@
          width="3156.5247"
          height="400.71695"
          x="-1011.3851"
-         y="20.533876" />
+         y="20.533876">
+      </rect>
     </mask>
     <linearGradient
        inkscape:collect="always"
@@ -789,7 +790,7 @@
          d="m 1020.9816,196.98924 225.9465,-0.0691 943.0372,-0.79754 0,196.99747 -943.0372,0.3119 z"
          id="activebg_clippath_shape"
          inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cccccc" />
+         sodipodi:nodetypes="cccccc"/>
     </clipPath>
     <path
        style="opacity:0.5;fill:url(#linearGradient4390);fill-opacity:1;stroke:none"
