@@ -25,7 +25,8 @@ function initHeader(svg)
   // add menu event handlers
   for (var i = 0; i < 5; i++)
   {
-    $header_svg.find('[id="item' + i + '_bg"]').hover(headerItemHover);
+    $header_svg.find('[id="item' + i + '_bg"]').hover(headerItemOnhover);
+    $header_svg.mouseleave(headerOnmouseleave);
   }
 }
 
@@ -39,7 +40,7 @@ function headerClippathAnimate()
   if (x === undefined) x = 0;
   if (d === undefined) d = -80;
 
-  if (d < 0 && x > -1200)
+  if ((d < 0 && x > -1200) || (d > 0 && x < 0))
   {
     x += d;
     // move clippath by x
@@ -50,9 +51,10 @@ function headerClippathAnimate()
   }
 }
 
-function headerItemHover(event)
+function headerItemOnhover(event)
 {
   var target = event.delegateTarget;
+  $(target).hide();
   var activebg = header_svg.getElementById(target.id.replace('bg', 'activebg'));
   // hide previous activebgs
   // FIXME: use classes instead of id substrings
@@ -60,8 +62,17 @@ function headerItemHover(event)
   $(activebg).show();
 
   // start clippath animation
+  headerClippathAnimate.d = -80;
   clearTimeout(headerClippathAnimate.handle);
   headerClippathAnimate.handle = setTimeout(headerClippathAnimate, 40);;
+
+  header_svg.activeItem = target;
 }
 
-
+function headerOnmouseleave(event)
+{
+  headerClippathAnimate.d = 80;
+  clearTimeout(headerClippathAnimate.handle);
+  headerClippathAnimate.handle = setTimeout(headerClippathAnimate, 40);;
+  $(header_svg.activeItem).show();
+}
