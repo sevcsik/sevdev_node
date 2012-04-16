@@ -168,7 +168,7 @@ exports.respondAjax = function(request, response)
       response.end(JSON.stringify(page));
     }
   });
-}
+};
 
 // bind cache clear to SIGHUP
 process.on('SIGHUP', function()

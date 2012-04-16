@@ -14,7 +14,7 @@ var MIME_TYPES =
   '.otf':   'application/octet-stream',
   '.eot':   'application/vnd.ms-fontobject',
   '.svg':   'image/svg+xml',
-  default: 'text/plain',
+  'def':	'text/plain',
 };
 
 var static_cache = {};
@@ -76,7 +76,7 @@ exports.onRequest = function(request, response)
           else
           {
             mime_type = MIME_TYPES[path.extname(file_path)];
-            if (mime_type == undefined) mime_type = MIME_TYPES.default;
+            if (mime_type == undefined) mime_type = MIME_TYPES.def;
 
             // save file contents to cache
             if (!no_cache)

@@ -56,7 +56,7 @@ function onReady()
       .attr('data-page', page);
 
     // insert content, if it's already available (initial page)
-    if (page_cache[page]) page_div.html(page_cache[page].content)
+    if (page_cache[page]) page_div.html(page_cache[page].content);
     else page_div.addClass('loading');
 
     // set inactive
