@@ -7,7 +7,7 @@
   <script src="js/jquery.scrollTo-min.js"></script>
   <script src="js/html5.js"></script>
   <script src="js/template.js"></script>
-  <script src="js/header.js"></script>
+  <!--  <script src="js/header.js"></script> -->
   <script src="js/modernizr-2.5.3.js"></script>
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="telegrama/stylesheet.css">
@@ -23,7 +23,7 @@
   <div id="background_content"></div>
   <div id="align">
     <header>
-      <embed id="header" src="img/header.inkscape.svg" type="image/svg+xml">
+      <!--      <embed id="header" src="img/header.inkscape.svg" type="image/svg+xml"> -->
     </header>
     <nav id="menu" class="focus-{{the_pagename}}">
       <div id="menu_slider">
@@ -31,11 +31,11 @@
         <a href="/contact" data-page="contact">contact</a>
         <a href="/" data-page="root">home</a>
         <a href="/projects" data-page="projects">projects</a>
-        <a href="/partners" data-page="links">links</a>
+        <a href="/lopezdesign" data-page="lopezdesign">lopezdesign</a>
       </div>
       <div id="menu_selector"></div>
     </nav>
-    <div id="content">
+    <div id="content" class="focus-{{the_pagename}}">
       <div class="page" data-page="{{the_pagename}}">
         {{the_content}}
       </div>

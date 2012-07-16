@@ -64,9 +64,6 @@ function onReady()
 
     $('#content').append(page_div);
   });
-
-  // focus on active page
-  $('#content').attr('class', 'focus-' + page_name);
 }
 
 /**

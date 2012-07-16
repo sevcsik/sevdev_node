@@ -7,21 +7,19 @@ var template = null;
 var no_cache = false;
 
 // is cache disabled?
-if (process.argv.indexOf('--no-cache') != -1) no_cache = true;
+if (process.argv.indexOf('--no-cache') !== -1) { no_cache = true; }
 
 function renderPage(template, page)
 {
   var output = template
-                 .replace(/{{the_content}}/g, page.content)
-                 .replace(/{{the_title}}/g, page.title)
-                 .replace(/{{the_pagename}}/g, page.name);
+                 .replace(/\{\{the_content\}\}/g, page.content)
+                 .replace(/\{\{the_title\}\}/g, page.title)
+                 .replace(/\{\{the_pagename\}\}/g, page.name);
 
   // don't include content in pageinfo_json again
   var content = page.content;
   page.content = null;
-  output = output.replace(/{{pageinfo_json}}/g, JSON.stringify(page));
-
-  // restore page object
+  output = output.replace('{{pageinfo_json}}', JSON.stringify(page));
   page.content = content;
 
   return output;
@@ -33,66 +31,9 @@ function parsePageXML(content, page)
   page.title = page_xml.get('//sd-title').text();
 }
 
-function loadPage(page_name, template, response)
+
+function respondTemplate(request, response, page)
 {
-  // load page
-  if (!no_cache && page_name in page_cache)
-  {
-    // render from cache
-    response.write(renderPage(template, page_cache[page_name]));
-    response.end();
-  }
-  else
-  {
-    // load page from file
-    fs.readFile('pages' + '/' + page_name + '.html', 'utf-8',
-                function(err, data)
-    {
-      if (err)
-      {
-        response.writeHead(404, 'Page Missing');
-        response.end();
-      }
-      else
-      {
-        if (!no_cache) console.log('page cached: ' + page_name);
-
-        // read page info from xml
-        var page = {};
-        page.name = page_name;
-
-        try
-        {
-          parsePageXML(data, page);
-        }
-        catch (err)
-        {
-          console.log('xml error: ' + err.toString());
-          page.content = page.title = 'XML ERROR';
-        }
-
-        // delete sd-pageinfo before outputting it
-        page.content = data.replace(/<sd-pageinfo>[^]+<\/sd-pageinfo>/, '');
-
-        // put in cache
-        if (!no_cache) page_cache[page_name] = page;
-
-        // set cache-control
-        if (no_cache) response.writeHead(200, {'Cache-Control': 'no-cache'});
-
-        response.write(renderPage(template, page));
-        response.end();
-      }
-    });
-  }
-}
-
-exports.renderTemplate = function(request, response)
-{
-  // strip slash from url
-  var page_name = request.url.replace('/', '');
-  if (!page_name) page_name = 'root';
-
   // load template
   if (!template)
   {
@@ -105,69 +46,107 @@ exports.renderTemplate = function(request, response)
       }
       else
       {
-        if (!no_cache) console.log('template cached');
+        if (!no_cache) { console.log('template cached'); }
         template = data;
-        loadPage(page_name, template, response);
+        response.end(renderPage(template, page));
       }
     });
   }
-  else loadPage(page_name, template, response);
+  else
+  {
+    response.end(renderPage(template, page));
+  }
 
   // only keep template in memory, if cache is enabled
-  if (no_cache) template = null;
-};
+  if (no_cache) { template = null; }
+}
 
-// page ajax call: /ajax/pages/<page_name>
-exports.respondAjax = function(request, response)
+exports.respond = function(request, response, render)
 {
   // get page name from url
-  var page_name = request.url.replace('/ajax/pages/', '');
+  var url_items = request.url.split('/');
+  
+  var page_name;
 
-  if (!no_cache && page_name in page_cache)
+  do
+  {
+    page_name = url_items.pop();
+  } while (url_items.length > 0 && !page_name);
+
+  if (!page_name) 
+  {
+    page_name = 'root';
+  }
+
+  if (!no_cache && page_cache[page_name] !== undefined)
   {
     response.writeHead(200, {'Content-type:': 'application/json'});
     response.end(JSON.stringify(page_cache[page_name]));
   }
   else
-  // load page from file
-  fs.readFile('pages' + '/' + page_name + '.html', 'utf-8',
-              function(err, data)
   {
-    if (err)
+    // load page from file
+    fs.readFile('pages' + '/' + page_name + '.html', 'utf-8',
+    function(err, data)
     {
-      response.writeHead(404, 'Page Missing');
-      response.end();
-    }
-    else
-    {
-      if (!no_cache) console.log('page cached: ' + page_name);
-
-      // read page info from xml
-      var page = {};
-      page.name = page_name;
-
-      try
+      if (err)
       {
-        parsePageXML(data, page);
+        response.writeHead(404, 'Page Missing');
+        response.end();
       }
-      catch (err)
+      else
       {
-        console.log('xml error: ' + err.toString());
-        page.content = page.title = 'XML ERROR';
+        // load metadata
+        fs.readFile('pages' + '/' + page_name + '.meta.xml', 'utf-8',
+        function(error, metadata)
+        {
+          // read page info from xml
+          var page = {};
+          page.name = page_name;
+
+          try
+          {
+            if (!error)
+            {
+              parsePageXML(metadata, page);
+            }
+            else
+            {
+              console.log('couldn\'t load ' + page_name + '.meta.xml');
+            }
+          }
+          catch (error_ex)
+          {
+            console.log('xml error: ' + error_ex.toString());
+            page.title = page_name;
+          }
+
+          page.content = data;
+
+          // save to cache
+          if (!no_cache) 
+          { 
+            page_cache[page_name] = page;
+            console.log('page cached: ' + page_name); 
+          }
+          else
+          {
+            response.writeHead(200, {'Cache-Control': 'no-cache'});
+          }
+
+          if (!render) // respond JSON
+          {
+            response.writeHead(200, {'Content-type:': 'application/json'});
+            response.end(JSON.stringify(page));
+          }
+          else // render page in template
+          {
+            respondTemplate(request, response, page);
+          }
+        });
       }
-      // delete sd-pageinfo before outputting it
-      page.content = data.replace(/<sd-pageinfo>[^]+<\/sd-pageinfo>/, '');
-
-      // put in cache
-      if (!no_cache) page_cache[page_name] = page;
-
-      // set cache-control
-      if (no_cache) response.writeHead(200, {'Cache-Control': 'no-cache'});
-
-      response.writeHead(200, {'Content-type:': 'application/json'});
-      response.end(JSON.stringify(page));
-    }
-  });
+    });
+  }
 };
 
 // bind cache clear to SIGHUP
@@ -175,5 +154,6 @@ process.on('SIGHUP', function()
 {
   template = null;
   static_cache = {};
+  page_cache = {};
   console.log('page cache cleared.');
 });

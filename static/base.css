@@ -154,7 +154,7 @@ header > embed
 #menu.focus-contact > #menu_slider { left: 210px }
 #menu.focus-root > #menu_slider { left: 30px }
 #menu.focus-projects > #menu_slider { left: -150px }
-#menu.focus-links > #menu_slider { left: -330px }
+#menu.focus-lopezdesign > #menu_slider { left: -330px }
 
 #menu a:hover,
 #menu a.active
@@ -212,7 +212,7 @@ header > embed
 #content.focus-contact .dummy  { margin-left: -100% }
 #content.focus-root .dummy     { margin-left: -200% }
 #content.focus-projects .dummy { margin-left: -300% }
-#content.focus-links .dummy    { margin-left: -400% }
+#content.focus-lopezdesign .dummy    { margin-left: -400% }
 
 #content > .page
 {
