@@ -1,1 +1,1 @@
-web: node server.js --port 7250
+web: node server.js
