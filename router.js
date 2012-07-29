@@ -103,7 +103,6 @@ exports.onRequest = function(request, response)
       }
       else // treat as a dynamic url
       {
-        response.writeHead(200, { 'Content-Type': 'text/html' });
         if (request.url === '/')
         {
           page_view.respond(request, response, true);

@@ -78,10 +78,16 @@ exports.respond = function(request, response, render)
     page_name = 'root';
   }
 
+  // if cached, respond the cached version
   if (!no_cache && page_cache[page_name] !== undefined)
   {
-    response.writeHead(200, {'Content-type:': 'application/json'});
-    response.end(JSON.stringify(page_cache[page_name]));
+    if (!render) {
+      response.writeHead(200, {'Content-type:': 'application/json'});
+      response.end(JSON.stringify(page_cache[page_name]));
+    } else {
+      response.writeHead(200, {'Content-type:': 'text/html'});
+      respondTemplate(request, response, page_cache[page_name]);
+    }
   }
   else
   {
