@@ -14,15 +14,16 @@ var page_cache = {};
  */
 function onReady()
 {
-  $(window).resize(resizeContentDiv);
+  $(window).resize(resizeInactive);
 
   // bind browser navigation buttons to changePage
   window.onpopstate = changePage;
 
   // set initial history state object
-  if (Modernizr.history)
+  if (Modernizr.history) {
     history.replaceState({ page: page_name }, page_name,
-        page_name == 'root' ? '/' : page_name);
+        page_name === 'root' ? '/' : page_name);
+  }
 
   // load initial page to cache (object comes from server)
   page_cache[page_name] = initial_page;
@@ -38,17 +39,21 @@ function onReady()
   $('#content').append('<div id="overlay_left"></div>');
   $('#content').append('<div id="overlay_right"></div>');
 
+  // set onclick handlers to menu items
   $('#menu_slider > a').each(function(i, e)
   {
     // add onclick to each menu item
     $(e).click(changePage);
     var page = $(e).attr('data-page');
 
-    if (page != page_name) // don't load active page again
+    if (page !== page_name) { // don't load active page again
       $.ajax('ajax/pages/' + page, { success: onPageLoad });
+    }
 
     // add entries in page_cache
-    if (!(page in page_cache)) page_cache[page] = null;
+    if (page_cache[page] === undefined) {
+      page_cache[page] = null;
+    }
 
     // insert page element to DOM
     var page_div = $('<div></div>')
@@ -56,14 +61,22 @@ function onReady()
       .attr('data-page', page);
 
     // insert content, if it's already available (initial page)
-    if (page_cache[page]) page_div.html(page_cache[page].content);
-    else page_div.addClass('loading');
+    if (page_cache[page]) {
+      page_div.html(page_cache[page].content);
+    } else { 
+      page_div.addClass('loading');
+    }
 
     // set inactive
-    if (page != page_name) page_div.addClass('inactive');
+    if (page !== page_name) {
+      page_div.addClass('inactive');
+    }
 
     $('#content').append(page_div);
   });
+
+  // set onclick handlers to inline page links
+  $('a[data-page]').click(changePage);
 }
 
 /**
@@ -72,12 +85,15 @@ function onReady()
 function changePage(event)
 {
   var page;
+  var $content = $('#content');
+  var $page = $content.find('.page[data-page="' + page_name + '"]');
 
   // is it coming from onpopstate
-  if (event.type == 'popstate')
-  {
+  if (event.type === 'popstate') {
     // if it's fired 'cause page load, ignore
-    if (!event.state) return;
+    if (!event.state) {
+      return;
+    }
     page = event.state.page;
   }
   // or onclick?
@@ -85,31 +101,71 @@ function changePage(event)
   {
     page = $(event.target).attr('data-page');
     // push url into history
-    if (Modernizr.history)
-      history.pushState({ 'page': page }, page, page == 'root' ? '/' : page);
+    if (Modernizr.history) {
+      history.pushState({ 'page': page }, page, 
+                        page === 'root' ? '/' : page);
+    }
   }
 
   // set current page inactive
-  $('#content [data-page="' + page_name + '"]').addClass('inactive');
+  $page.addClass('inactive');
 
   // slide menu and content
   $('#menu').attr('class', 'focus-' + page);
-  $('#content').attr('class', 'focus-' + page);
+  $content.attr('class', 'focus-' + page);
 
   // set page_name global
   page_name = page;
+  // update
+  $page = $content.find('.page[data-page="' + page_name + '"]');
 
   // set new page active
-  $('#content [data-page="' + page_name + '"]').removeClass('inactive');
+  $page.removeClass('inactive');
 
   // set page title
-  if (page_cache[page])
+  if (page_cache[page]) {
     $('title').html('sevdev: ' + page_cache[page].title);
+  }
 
-  resizeContentDiv();
+  // clip inactive pages when the transition is complete
+  $content.on('transitionend', resizeInactive)
+    .on('webkitTransitionEnd', resizeInactive)
+    .on('oTransitionEnd', resizeInactive);
 
-  return false;
+  // remove previously forced height
+  $page.css('height', 'auto').css('overflow', 'visible');
+
+  event.preventDefault();
 }
+
+/**
+ * Set #content height to the current article's height
+ * but fill the window, and clip inactive pages
+ */
+function resizeInactive(event)
+{
+  var $content = $('#content');
+  var $page = $content.find('.page[data-page="' + page_name + '"]');
+
+  // distance between #content's top and window's bottom
+  var min_size = window.innerHeight - $content.prop('offsetTop');
+
+  // current .page's height
+  var content_size = $page.children().prop('offsetHeight');
+
+  var height = min_size > content_size ? min_size : content_size;
+  $('#content').css('height', height + 'px');
+
+  // clip inactive pages
+  $content.find('.page.inactive')
+    .css('height', height + 'px')
+    .css('overflow', 'hidden');
+
+  if (event) {
+    $content.unbind(event);
+  }
+}
+
 
 /**
  * Insert page content to the DOM, when it's loaded
@@ -117,29 +173,16 @@ function changePage(event)
 function onPageLoad(data)
 {
   page_cache[data.name] = data;
-  $('#content [data-page="' + data.name + '"]')
+  $('#content > [data-page="' + data.name + '"]')
     .removeClass('loading')
-    .html(data.content);
+    .html(data.content)
+    // Update inline navigation links
+    .find('a[data-page]')
+    .click(changePage);
+
+  resizeInactive();
 }
 
 var count = 0;
 
-/**
- * Set #content height to the current article's height
- * but fill the window
- */
-function resizeContentDiv()
-{
-  // distance between #content's top and window's bottom
-  var min_size = window.innerHeight - $('#content')[0].offsetTop;
-
-  // current .page's height
-  var content_size =
-    $('#content > [data-page="' + page_name + '"]')[0].offsetHeight;
-
-  $('#content')[0].style.height =
-    (min_size > content_size ? min_size : content_size) + 'px';
-}
-
 $(document).ready(onReady);
-$(document).ready(resizeContentDiv);
