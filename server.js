@@ -1,11 +1,14 @@
 var http = require('http');
 var router = require('./router.js');
 
-// check for port number in arguments
 var port = 8080;
-if ((i = process.argv.indexOf('--port')) !== -1 &&
-      process.argv.length > i+1)
-{
+
+// use PORT environment variable if available
+if (process.env['PORT']) {
+  port = parseInt(process.env['PORT'], 10);
+} else if ((i = process.argv.indexOf('--port')) !== -1 &&
+     process.argv.length > i+1) {
+  // check for port number in arguments
   port = parseInt(process.argv[i+1], 10);
   if (!port) { throw 'Invalid port: ' + process.argv[i+1]; }
 }
