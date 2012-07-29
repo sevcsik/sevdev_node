@@ -2,11 +2,10 @@
   "name": "sevdev-node",
   "version": "1.0.0",
   "dependencies": {
-    "libxmljs": "0.5.4",
-    "spdy": "1.3.x"
+    "libxmljs": "0.5.4"
   },
   "engines": {
-    "node": "0.8.x",
+    "node": "0.6.x",
     "npm:": "1.1.41"
   }
 }
