@@ -1,5 +1,5 @@
-fs = require('fs');
-libxml = require ('libxmljs');
+var fs = require('fs');
+var libxml = require ('libxmljs');
 
 var page_cache = {};
 var template = null;
@@ -65,7 +65,7 @@ exports.respond = function(request, response, render)
 {
   // get page name from url
   var url_items = request.url.split('/');
-  
+
   var page_name;
 
   do
@@ -73,7 +73,7 @@ exports.respond = function(request, response, render)
     page_name = url_items.pop();
   } while (url_items.length > 0 && !page_name);
 
-  if (!page_name) 
+  if (!page_name)
   {
     page_name = 'root';
   }
@@ -130,10 +130,10 @@ exports.respond = function(request, response, render)
           page.content = data;
 
           // save to cache
-          if (!no_cache) 
-          { 
+          if (!no_cache)
+          {
             page_cache[page_name] = page;
-            console.log('page cached: ' + page_name); 
+            console.log('page cached: ' + page_name);
           }
           else
           {
