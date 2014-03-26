@@ -4,67 +4,95 @@
       float: right;
       position: relative;
       margin-left: 20px;
-      background: url(img/photo.jpg);
+      background-image: url(img/photo.jpg);
+      background-color: #50647d;
 	  background-position: center top;
       background-size: contain;
 	  background-repeat: no-repeat;
-      width: 300px;
-      height: 550px;
-    }
-
-    [data-page='about'] .sidebar > table {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      background: #50647d;
-      padding: 15px;
+      width: 250px;
+      padding: 15px 15px 5px 15px;
       vertical-align: top;
 	  color: #f0eeec;
+	  font-size: 16px;
     }
 
-    [data-page='about'] .sidebar th {
+    [data-page='about'] .sidebar h2 {
+	  margin-top: 280px;
       font-weight: bold;
       font-size: 140%;
       padding-bottom: 10px;
+	  text-align: center;
     }
 
-    [data-page='about'] .sidebar td
+    [data-page='about'] .sidebar p
     {
       padding: 5px 0;
+	  margin-bottom: 5px
     }
 
-    [data-page='about'] .sidebar td:first-child {
-      padding-right: 20px;
-    }
+	[data-page='about'] .sidebar .fa {
+		font-size: 25px;
+		color: #ff9900;
+		vertical-align: middle;
+	}
+
+	[data-page='about'] .sidebar .profiles a {
+		margin-right: 18px;
+	}
+	
+	[data-page='about'] .sidebar .profiles a::after {
+		display: none;
+	}
+	
+	[data-page='about'] .sidebar :link,
+	[data-page='about'] .sidebar :visited, 
+	[data-page='about'] .sidebar :active,
+	[data-page='about'] .sidebar :hover	{
+		color: inherit;
+	}
+
   </style>
 
   <h1>About me</h1>
-  <div class="sidebar" style="cursor: pointer"
-       onclick="window.open('http://careers.stackoverflow.com/sevcsik')">
-    <table>
-      <tr>
-        <th colspan="2">András Sevcsik</th>
-      </tr>
-      <tr>
-        <td>Location</td>
-        <td>Budapest, Hungary</td>
-      </tr>
-      <tr>
-        <td>Profession</td>
-        <td>Frontend &amp; Backend Development</td>
-      <tr>
-        <td>Frontend technologies</td>
-        <td>HTML5, CSS3, jQuery, Backbone.js</td>
-      </tr>
-      <td>Backend technologies</td>
-        <td>Node.js, Symfony2, Rails, MySQL, MongoDB</td>
-      </tr>
-      <tr>
-        <td>Programming languages</td>
-        <td>Javascript, PHP, C/C++, Java, C#, Ruby, Bash</td>
-      </tr>
-    </table>
+  <div class="sidebar">
+      <h2>András Sevcsik</h2>
+	  <p class="title">
+	    <i class="fa fa-fw fa-user"></i>
+	  	Javascript Developer
+	  </p> 
+      <p class="location">
+	  	<i class="fa fa-fw fa-map-marker"></i>
+		Budapest, Hungary
+	  </p>
+	  <p class="email">
+	  	<i class="fa fa-fw fa-envelope"></i>
+		<a href="mailto:sevcsik@sevdev.hu">sevcsik@sevdev.hu</a>
+	  </p>
+	  <p class="phone">
+	  	<i class="fa fa-fw fa-phone"></i>
+		<a href="tel:+36702915159">+36702915159</a>
+	  </p>
+	  <p class="phone">
+	  	<i class="fa fa-fw fa-skype"></i>
+		<a href="skype:sevcsik?chat">sevcsik</a>
+	  </p>
+	  <p class="profiles">
+		<a href="http://github.com/sevcsik" target="_blank">
+			<i class="fa fa-fw fa-github"></i>
+		</a>
+		<a href="http://linkedin.com/in/sevcsik" target="_blank">
+			<i class="fa fa-fw fa-linkedin"></i>
+		</a>
+		<a href="http://twitter.com/sevcsik" target="_blank">
+			<i class="fa fa-fw fa-twitter"></i>
+		</a>
+		<a href="https://www.google.com/+Andr%C3%A1sSevcsik" target="_blank">
+			<i class="fa fa-fw fa-google-plus"></i>
+		</a>
+		<a href="http://stackoverflow.com/users/382610/sevcsik" target="_blank">
+			<i class="fa fa-fw fa-stack-overflow"></i>
+		</a>
+	  </p>
   </div>
   <p>
     I'm a true geek from Budapest, Hungary. I've been working
