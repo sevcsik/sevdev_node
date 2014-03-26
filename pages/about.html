@@ -1,15 +1,15 @@
 <article>
   <style>
     [data-page='about'] .sidebar {
-      float: left;
+      float: right;
       position: relative;
-      margin-right: 20px;
+      margin-left: 20px;
       background: url(img/photo.jpg);
-      background-size: cover;
+	  background-position: center top;
+      background-size: contain;
+	  background-repeat: no-repeat;
       width: 300px;
       height: 550px;
-      border-radius: 15px;
-      box-shadow: 1px 1px 2px black;
     }
 
     [data-page='about'] .sidebar > table {
@@ -17,11 +17,10 @@
       bottom: -1px;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      border-bottom-right-radius: 15px;
-      border-bottom-left-radius: 15px;
+      background: #50647d;
       padding: 15px;
       vertical-align: top;
+	  color: #f0eeec;
     }
 
     [data-page='about'] .sidebar th {
