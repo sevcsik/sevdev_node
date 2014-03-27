@@ -105,6 +105,8 @@ function changePage(event)
       history.pushState({ 'page': page }, page, 
                         page === 'root' ? '/' : page);
     }
+
+	if (ga) ga('send', 'pageview', '/' + page);
   }
 
   // set current page inactive
