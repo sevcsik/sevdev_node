@@ -234,8 +234,8 @@ article > h1
 	right: 40px;
 	font-weight: normal;
 	font-family: Orbitron, Verdana, sans-serif;
-	color: white;
 	color: #50647d;
+	opacity: 0.4;
 	-webkit-transition: opacity 0.3s;
 }
 
