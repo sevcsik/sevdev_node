@@ -24,7 +24,7 @@
     <header>
 		<img id="logo" src="img/logo.svg">
     </header>
-    <nav id="menu" class="focus-{{the_pagename}}">
+    <nav id="menu" class="focus-{{the_pageindex}}">
       <div id="menu_slider">
         <a href="/about" data-page="about">about</a>
         <a href="/contact" data-page="contact">contact</a>
@@ -34,7 +34,7 @@
       </div>
       <div id="menu_selector"></div>
     </nav>
-    <div id="content" class="focus-{{the_pagename}}">
+    <div id="content" class="focus-{{the_pageindex}}">
       <div class="page" data-page="{{the_pagename}}">
         {{the_content}}
       </div>

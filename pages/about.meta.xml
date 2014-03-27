@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <sd-pageinfo>
   <sd-title>About me</sd-title>
+  <sd-index>1</sd-index>
   <sd-description>
     Few words about my life, career, and other bullsh*t. Oh, and a CV.
   </sd-description>

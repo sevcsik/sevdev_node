@@ -14,7 +14,8 @@ function renderPage(template, page)
   var output = template
                  .replace(/\{\{the_content\}\}/g, page.content)
                  .replace(/\{\{the_title\}\}/g, page.title)
-                 .replace(/\{\{the_pagename\}\}/g, page.name);
+                 .replace(/\{\{the_pagename\}\}/g, page.name)
+				 .replace(/\{\{the_pageindex\}\}/g, page.index);
 
   // don't include content in pageinfo_json again
   var content = page.content;
@@ -29,6 +30,7 @@ function parsePageXML(content, page)
 {
   var page_xml = libxml.parseHtmlString(content);
   page.title = page_xml.get('//sd-title').text();
+  page.index = page_xml.get('//sd-index').text();
 }
 
 
