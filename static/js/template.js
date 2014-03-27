@@ -113,9 +113,9 @@ function changePage(event)
   $page.addClass('inactive');
 
   // slide menu and content
-  // slide menu and content
-  $('#menu').attr('class', 'focus-' + page);
-  $content.attr('class', 'focus-' + page);
+  var pageIndex = $('#menu *').index($('[data-page="' + page));
+  $('#menu').attr('class', 'focus-' + pageIndex);
+  $content.attr('class', 'focus-' + pageIndex);
 
   // set page_name global
   page_name = page;
