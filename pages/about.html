@@ -4,7 +4,7 @@
       float: right;
       position: relative;
       margin: 0 0 20px 20px;
-      background-image: url(img/photo.jpg);
+      background-image: url(img/photo_1x.jpg);
       background-color: #50647d;
 	  background-position: center top;
       background-size: contain;
@@ -15,6 +15,46 @@
 	  color: #f0eeec;
 	  font-size: 16px;
     }
+
+	@media 
+		only screen and (-webkit-min-device-pixel-ratio: 1.01),
+		only screen and (min--moz-device-pixel-ratio: 1.01),
+		only screen and (-ms-min-device-pixel-ratio: 1.01),
+		only screen and (-o-min-device-pixel-ratio: 1.01),
+		only screen and (min-device-pixel-ratio: 1.01),
+	    only screen and (min-resolution: 1.01ddpx) {
+
+		[data-page='about'] .sidebar { 
+			background-image: url(img/photo_1.5x.jpg) 
+		}
+	}
+
+	@media 
+		only screen and (-webkit-min-device-pixel-ratio: 1.51),
+		only screen and (min--moz-device-pixel-ratio: 1.51),
+		only screen and (-ms-min-device-pixel-ratio: 1.51),
+		only screen and (-o-min-device-pixel-ratio: 1.51),
+		only screen and (min-device-pixel-ratio: 1.51),
+	    only screen and (min-resolution: 1.51ddpx) {
+
+		[data-page='about'] .sidebar { 
+			background-image: url(img/photo_2x.jpg) 
+		}
+	}
+
+	@media 
+		only screen and (-webkit-min-device-pixel-ratio: 2.01),
+		only screen and (min--moz-device-pixel-ratio: 2.01),
+		only screen and (-ms-min-device-pixel-ratio: 2.01),
+		only screen and (-o-min-device-pixel-ratio: 2.01),
+		only screen and (min-device-pixel-ratio: 2.01),
+	    only screen and (min-resolution: 2.01ddpx) {
+
+		[data-page='about'] .sidebar { 
+			background-image: url(img/photo_3x.jpg) 
+		}
+	}
+		
 
     [data-page='about'] .sidebar h2 {
 	  margin-top: 280px;
