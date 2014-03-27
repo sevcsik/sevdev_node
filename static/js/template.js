@@ -106,12 +106,13 @@ function changePage(event)
                         page === 'root' ? '/' : page);
     }
 
-	if (ga) ga('send', 'pageview', '/' + page);
+    if (ga) ga('send', 'pageview', page === 'root' ? '/' : page);
   }
 
   // set current page inactive
   $page.addClass('inactive');
 
+  // slide menu and content
   // slide menu and content
   $('#menu').attr('class', 'focus-' + page);
   $content.attr('class', 'focus-' + page);
