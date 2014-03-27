@@ -1,5 +1,7 @@
 /* theme: https://kuler.adobe.com/sevdevhu-theme-based-on-AlMo3000-color-theme-3699265/ */
 
+@import url(http://fonts.googleapis.com/css?family=Orbitron:500,700|Audiowide);
+
 nav, article, header
 {
   display: block;
@@ -225,16 +227,16 @@ article
 
 article > h1
 {
-  text-transform: lowercase;
-  position: absolute;
-  font-size: 72px;
-  top: -120px;
-  right: 30px;
-  font-weight: normal;
-  font-family: Ubuntu, Verdana, sans-serif;
-  color: white;
-  color: #50647d;
-  -webkit-transition: opacity 0.3s;
+	text-transform: lowercase;
+	position: absolute;
+	font-size: 59px;
+	top: -94px;
+	right: 40px;
+	font-weight: normal;
+	font-family: Orbitron, Verdana, sans-serif;
+	color: white;
+	color: #50647d;
+	-webkit-transition: opacity 0.3s;
 }
 
 article h2 {
