@@ -1,4 +1,4 @@
-<article>
+<article itemscope itemtype="http://schema.org/Person">
   <style>
     [data-page='about'] .sidebar {
       float: right;
@@ -58,126 +58,149 @@
   </style>
 
   <h1>About me</h1>
-  <div class="sidebar">
-      <h2>András Sevcsik</h2>
+  <aside class="sidebar">
+	  <h2>
+		  <span itemprop="givenName">András</span> 
+		  <span itemprop="familyName">Sevcsik</span>
+	  </h2>
 	  <p class="title">
 	    <i class="fa fa-fw fa-user"></i>
-	  	Javascript Developer
+		<span itemprop="jobTitle">Javascript Developer</span>
 	  </p> 
-      <p class="location">
+      <p class="location" itemprop="address" itemscope 
+	  	itemtype="http://schema.org/PostalAddress">
 	  	<i class="fa fa-fw fa-map-marker"></i>
-		Budapest, Hungary
+		<span itemprop="addressLocality">Budapest</span>, 
+		<span itemprop="addressCountry">Hungary</span>
 	  </p>
 	  <p class="email">
 	  	<i class="fa fa-fw fa-envelope"></i>
-		<a href="mailto:sevcsik@sevdev.hu">sevcsik@sevdev.hu</a>
+		<a href="mailto:sevcsik@sevdev.hu" itemprop="email">
+			sevcsik@sevdev.hu
+		</a>
 	  </p>
 	  <p class="phone">
 	  	<i class="fa fa-fw fa-phone"></i>
-		<a href="tel:+36702915159">+36702915159</a>
+		<a href="tel:+36702915159" itemprop="telephone">+36702915159</a>
 	  </p>
 	  <p class="phone">
 	  	<i class="fa fa-fw fa-skype"></i>
 		<a href="skype:sevcsik?chat">sevcsik</a>
 	  </p>
 	  <p class="profiles">
-		<a href="http://github.com/sevcsik" target="_blank">
+		<a itemprop="sameAs" href="http://github.com/sevcsik" 
+			target="_blank">
 			<i class="fa fa-fw fa-github"></i>
 		</a>
-		<a href="http://linkedin.com/in/sevcsik" target="_blank">
+		<a itemprop="sameAs" href="http://linkedin.com/in/sevcsik" 
+			target="_blank">
 			<i class="fa fa-fw fa-linkedin"></i>
 		</a>
-		<a href="http://twitter.com/sevcsik" target="_blank">
+		<a itemprop="sameAs" href="http://twitter.com/sevcsik" 
+			target="_blank">
 			<i class="fa fa-fw fa-twitter"></i>
 		</a>
-		<a href="https://www.google.com/+Andr%C3%A1sSevcsik" target="_blank">
+		<a itemprop="sameAs" href="https://www.google.com/+Andr%C3%A1sSevcsik" 
+			target="_blank">
 			<i class="fa fa-fw fa-google-plus"></i>
 		</a>
-		<a href="http://stackoverflow.com/users/382610/sevcsik" target="_blank">
+		<a itemprop="sameAs" href="http://stackoverflow.com/users/382610/sevcsik" 
+			target="_blank">
 			<i class="fa fa-fw fa-stack-overflow"></i>
 		</a>
 	  </p>
-  </div>
-  <h2>Introduction</h2>
-  <p>
-    I'm a true geek from Budapest, Hungary. I've been working
-    as a freelancer web developer since 2009, and urrently I work 
-    as a lead frontend developer in the Budapest office of
-    <a href="http://www.performgroup.co.uk" target="_blank">
-      Perform Group
-    </a>.
-  </p>
-  <p>
-    Since my early childhood, I have been showing special interest 
-    towards computers. My IT education started when I found the K&amp;R 
-    C programming book on my father's bookshelf, and tried to compile the 
-    Celsius-Fahrenheit converter example, on Borland C for MS-DOS, 
-    on my his 486.
-  </p>
-  <p>
-    I have been continuously self-educating myself in numerous 
-    programming languages, like Ruby, C and C++. I soon became a 
-    Linux user, and enthusiastic about the Open Source world.
-  </p>
+  </aside>
+  <section>
+	  <h2>Introduction</h2>
+	  <p>
+		I'm a true geek from Budapest, Hungary. I've been working
+		as a freelancer web developer since 2009, and urrently I work 
+		as a lead frontend developer in the Budapest office of
+		<a href="http://www.performgroup.co.uk" target="_blank">
+		  Perform Group
+		</a>.
+	  </p>
+  </section>
+  <section>
+	  <p>
+		Since my early childhood, I have been showing special interest 
+		towards computers. My IT education started when I found the K&amp;R 
+		C programming book on my father's bookshelf, and tried to compile the 
+		Celsius-Fahrenheit converter example, on Borland C for MS-DOS, 
+		on my his 486.
+	  </p>
+	  <p>
+		I have been continuously self-educating myself in numerous 
+		programming languages, like Ruby, C and C++. I soon became a 
+		Linux user, and enthusiastic about the Open Source world.
+	  </p>
+  </section>
+  <section>
   <h2>Education</h2>
-  <p>
-    In high school, 
-	<a href="http://www.puskas.hu/" target="_blank">
-		Tivadar Puskas Technical High School of Telecommunication
-	</a>
-	I learned low level hardware programming 
-    (PIC and AVR assembly), and got a solid knowledge of electronics. 
-  </p>
-  <p>
-    I dived into web development around 2006, mostly in PHP and Ruby. 
-	Back then it was really ugly, there was chaos because of the browser 
-	wars, and it was the age of framesets, marquee tags and Javascript clocks. 
-  </p>
-  <p>
-    Fortunately I found out that that web development can be done as 
-    professional and clean as traditional software development - people just 
-	don't take the effort to do it. I learned to use MVC frameworks, 
-    such as CakePHP, Symfony and Ruby on Rails, cross-browser libraries 
-    like jQuery, templating engines, and object-oriented PHP. And with 
-    the rise of cloud computing and the social media web development 
-    became a mature industry, arguably with more potential than 
-    traditional software development.
-  </p>
-  <p>
-  	For a short period of two years, I also enrolled in	
-	<a href="http://www.vik.bme.hu/en/education/" target="_blank">
-		Budapest University of Technology and Economics
-	</a> as an IT Engineer.
-	Altough I did not finish the curriculum, I learned a lot of invaluable
-	knowledge about about low-level programming, computer architecture,
-	design patterns and a lot of other useful things.	
-  <h2>Career</h2>
-  <p>
-  	Since 2009, I'm working as a freelancer web developer. I create responsive
-	websites and web applications. I picked up Node.js, NoSQL databases, and
-	modern frameworks such as Backbone and AngularJS.
-  <p>
-  	My first full-time job was at
-	<a href="http://kuponvilag.hu" target="_blank">Kupon Vilag</a>, a daily
-	deal company. I was working as a web developer, in a LAMP environment.
-	Besides backend architecture and sitebuild, I learned a lot about 
-	online marketing, e-commerce and statistics.
-  </p>
-  <p>
-  	After I left Kupon Vilag, I decided to get a much deepen knowledge of
-	Javascript. My next serious position was (and currently is) at
-	<a href="http://performgroup.com" target="_blank">Perform Group</a>.
-	I was hired as a Javascript developer, currently I'm the lead architect
-    on new Javascript projects. I gained experience in building single-page
-	web applications, and I learned a lot about video streaming, 
-	advertisements and client-side analytics.
-	At Perform, I was also intruduced to Scrum and development in a big,
-	multinational environment in general.
-  </p>
-  <p>
-    I'm always open to find new challenges. If you have something in mind,
-    whether it's a website, an application or something completely different,
-	which has to be done professionally and by the book, don't hesitate to
-	contact me.
-  </p>
+	  <p>
+		In high school, 
+		<a href="http://www.puskas.hu/" target="_blank">
+			Puskas Tivadar Technical High School of Telecommunication
+		</a>
+		I learned low level hardware programming 
+		(PIC and AVR assembly), and got a solid knowledge of electronics. 
+	  </p>
+	  <p>
+		I dived into web development around 2006, mostly in PHP and Ruby. 
+		Back then it was really ugly, there was chaos because of the browser 
+		wars, and it was the age of framesets, marquee tags and Javascript clocks. 
+	  </p>
+	  <p>
+		Fortunately I found out that that web development can be done as 
+		professional and clean as traditional software development - people just 
+		don't take the effort to do it. I learned to use MVC frameworks, 
+		such as CakePHP, Symfony and Ruby on Rails, cross-browser libraries 
+		like jQuery, templating engines, and object-oriented PHP. And with 
+		the rise of cloud computing and the social media web development 
+		became a mature industry, arguably with more potential than 
+		traditional software development.
+	  </p>
+	  <p>
+		For a short period of two years, I also enrolled in	
+		<a href="http://www.vik.bme.hu/en/education/" target="_blank">
+			Budapest University of Technology and Economics
+		</a> as an IT Engineer.
+		Altough I did not finish the curriculum, I learned a lot of invaluable
+		knowledge about about low-level programming, computer architecture,
+		design patterns and a lot of other useful things.	
+	  </p>
+  </section>
+  <section>
+	  <h2>Career</h2>
+	  <p>
+		Since 2009, I'm working as a freelancer web developer. I create responsive
+		websites and web applications. I picked up Node.js, NoSQL databases, and
+		modern frameworks such as Backbone and AngularJS.
+	  <p>
+		My first full-time job was at
+		<a href="http://kuponvilag.hu" target="_blank">Kupon Vilag</a>, a daily
+		deal company. I was working as a web developer, in a LAMP environment.
+		Besides backend architecture and sitebuild, I learned a lot about 
+		online marketing, e-commerce and statistics.
+	  </p>
+	  <p>
+		After I left Kupon Vilag, I decided to get a much deepen knowledge of
+		Javascript. My next serious position was (and currently is) at
+		<a href="http://performgroup.com" target="_blank">Perform Group</a>.
+		I was hired as a Javascript developer, currently I'm the lead architect
+		on new Javascript projects. I gained experience in building single-page
+		web applications, and I learned a lot about video streaming, 
+		advertisements and client-side analytics.
+		At Perform, I was also intruduced to Scrum and development in a big,
+		multinational environment in general.
+	  </p>
+  </section>
+  <section>
+	  <p>
+		I'm always open to find new challenges. If you have something in mind,
+		whether it's a website, an application or something completely different,
+		which has to be done professionally and by the book, don't hesitate to
+		contact me.
+	  </p>
+  </section>
 </article>
