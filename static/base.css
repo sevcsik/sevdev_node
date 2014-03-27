@@ -213,7 +213,7 @@ article
   text-align: left;
   font-family: sans-serif;
   color: #333333;
-  font-size: 14px;
+  font-size: 18px;
   white-space: normal;
   position: relative;
 }
@@ -235,6 +235,18 @@ article > h1
   color: white;
   color: #50647d;
   -webkit-transition: opacity 0.3s;
+}
+
+article h2 {
+	font-family: Ubuntu, sans-serif;
+	font-size: 28px;
+	color: #ff9900;
+	font-weight: bold;
+	margin: 20px 0 20px 0; 
+}
+
+article h2:first-of-type {
+	margin-top: 0;
 }
 
 article p
