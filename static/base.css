@@ -210,7 +210,7 @@ header {
 article
 {
   padding: 30px 20px 10px 20px;
-  text-align: left;
+  text-align: justify;
   font-family: sans-serif;
   color: #333333;
   font-size: 18px;
@@ -258,7 +258,6 @@ article a
 {
   font-weight: bold;
   color: #50647d;
-  white-space: nowrap;
   -webkit-transition: color 0.3s;
 }
 
