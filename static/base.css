@@ -247,7 +247,7 @@ article h2 {
 	margin: 20px 0 20px 0; 
 }
 
-article h2:first-of-type {
+article section:first-of-type h2 {
 	margin-top: 0;
 }
 
