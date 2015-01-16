@@ -1,6 +1,8 @@
 /* theme: https://kuler.adobe.com/sevdevhu-theme-based-on-AlMo3000-color-theme-3699265/ */
 
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 @import url(//fonts.googleapis.com/css?family=Orbitron:500,700|Audiowide);
+@import url(//fonts.googleapis.com/css?family=Josefin+Sans:400,600);
 
 nav, article, header
 {
@@ -61,7 +63,7 @@ body
   width: 960px;
   margin: auto;
   position: relative;
-  padding-top: 140px;
+  padding-top: 150px;
 }
 
 header {
@@ -152,6 +154,9 @@ header {
   position: relative;
   white-space: nowrap;
   -webkit-transition: height 0.3s linear;
+  font-family: "Josefin Sans", sans-serif;
+  line-height: 150%;
+  font-size: 20px;
 }
 
 #overlay_left,
@@ -212,10 +217,8 @@ header {
 article
 {
   padding: 30px 20px 10px 20px;
-  text-align: justify;
-  font-family: sans-serif;
+  text-align: left;
   color: #333333;
-  font-size: 18px;
   white-space: normal;
   position: relative;
 }
@@ -240,11 +243,10 @@ article > h1
 }
 
 article h2 {
-	font-family: Ubuntu, sans-serif;
 	font-size: 28px;
 	color: #ff9900;
 	font-weight: bold;
-	margin: 20px 0 20px 0; 
+	margin: 30px 0 20px 0; 
 }
 
 article section:first-of-type h2 {
@@ -271,12 +273,13 @@ article :link:active
 
 article a[href^=http]:after
 {
-  content: "\2197";
+  content: "\f08e";
   margin-left: -2px;
-  color: #888;
+  color: rgba(128, 128, 128, 0.5);
   text-shadow: none;
-  font-size: 80%;
-  vertical-align: super;
+  font-size: 60%;
+  vertical-align: baseline;
   font-weight: normal;
+  font-family: FontAwesome;
 }
 

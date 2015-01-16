@@ -11,7 +11,7 @@
 	padding: 15px 15px 5px 15px;
 	vertical-align: top;
 	color: #333333;
-	font-size: 14px;
+	font-size: 19x;
 	box-shadow: 1px 1px 2px black;
 }
 
@@ -58,7 +58,6 @@
 [data-page='about'] .sidebar h2 {
   margin-top: 280px;
   font-weight: bold;
-  font-size: 140%;
   padding-bottom: 10px;
   text-align: center;
   color: inherit;
