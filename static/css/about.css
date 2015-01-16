@@ -11,7 +11,7 @@
 	padding: 15px 15px 5px 15px;
 	vertical-align: top;
 	color: #333333;
-	font-size: 19x;
+	font-size: 18px;
 	box-shadow: 1px 1px 2px black;
 }
 
@@ -73,6 +73,7 @@
 [data-page='about'] .sidebar .fa {
 	font-size: 25px;
 	vertical-align: middle;
+	margin-right: 10px;
 }
 
 [data-page='about'] .sidebar .profiles {
@@ -80,10 +81,8 @@
 	border-top: 1px solid #718db0;
 	padding-top: 20px;
 	margin-top: 15px;
-}
-
-[data-page='about'] .sidebar .profiles a {
-	margin-right: 17px;
+	text-align: center;
+	padding-left: 10px;
 }
 
 [data-page='about'] .sidebar .profiles a::after {
